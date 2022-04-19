@@ -1,0 +1,107 @@
+import java.util.Scanner;
+
+public class E_encrypt {
+    public static void main(String args[]) {
+
+        Scanner input  = new Scanner(System.in);
+
+        //loop
+        while(input.hasNextLine()) {
+            // new line
+            String inputstring = input.nextLine();
+            //
+            String outputString = encrypt(inputstring);
+            // print method
+            System.out.println(outputString);
+        }
+        Scanner sc = new Scanner(System.in);
+        String inputstring = sc.nextLine();
+        String s = inputstring.toLowerCase();
+        int l = inputstring.length();
+        int c = 0;
+
+        for(int i = 0; i <= l - 1; i++)
+        {
+            char d = s.charAt(i);
+            //a = 5 , e= 10 , i=15 , o=20 , u =25
+            if(d  == 5 || d  == 15 || d == 15 || d == 20 || d == 25)
+            {
+                c++;
+            }
+
+        }
+        System.out.println("Number of Vowels: " + c);
+        sc.close();
+
+    }
+
+    public static String encrypt(String inputArray) {
+        //lower vowels
+        String lv = "aeiouy";
+        //lower consonants
+        String lc = "bcdfghjklmnpqrstvwxz";
+        //upper vowels
+        String uv = "AEIOUY";
+        //upper consonant
+        String uc = "BCDFGHJKLMNPQRSTVWXZ";
+        //us
+        String output = "";
+
+        for(int i=0;i<inputArray.length();i++) {
+            char charinput = inputArray.charAt(i);
+            int vowellowerindex = lv.indexOf(charinput);
+            int consonantlowerindex = lc.indexOf(charinput);
+            int vowelsupperindex = uv.indexOf(charinput);
+            int consonantsupperindex = uc.indexOf(charinput);
+
+            //lower vowels
+            if(vowellowerindex != -1) {
+                vowellowerindex ++;
+
+                if(vowellowerindex == lv.length()) {
+                    vowellowerindex=0;
+                }
+                output += lv.charAt(vowellowerindex);
+            }
+
+            //lower consonants
+            else if(consonantlowerindex != -1) {
+                consonantlowerindex ++;
+
+                if(consonantlowerindex == lc.length()) {
+                    consonantlowerindex=0;
+                }
+                output += lc.charAt(consonantlowerindex);
+            }
+
+
+
+            //Upper vowels
+            else if(vowelsupperindex != -1){
+                vowelsupperindex ++;
+
+                if(vowelsupperindex == uv.length()) {
+                    vowelsupperindex=0;
+                }
+                output += uv.charAt(vowelsupperindex);
+            }
+
+
+            //Upper consonant
+            else if(consonantsupperindex != -1) {
+                consonantsupperindex ++;
+
+                if(consonantsupperindex == uc.length()) {
+                    consonantsupperindex=0;
+                }
+                output += uc.charAt(consonantsupperindex);
+            }
+            else {
+                output += charinput;
+            }
+
+        }
+        // return
+        return output;
+    }
+}	
